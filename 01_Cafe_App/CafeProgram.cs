@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace _01_Cafe_App
 {
-    class Program
+    class CafeProgram
     {
         static void Main(string[] args)
         {
+            CafeMenuUI ui = new CafeMenuUI();
+            ui.Run();
         }
     }
 }
