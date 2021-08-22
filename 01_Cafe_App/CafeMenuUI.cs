@@ -72,9 +72,18 @@ namespace _01_Cafe_App
             try
             {
                 var cafeMenuItem = new CafeMenuItem(Convert.ToInt32(mealNumber), mealName, mealDescription, ingredients, Convert.ToDecimal(price));
-                var success = _repo.AddMenuItem(cafeMenuItem);
 
-                Console.WriteLine($"Your menu item was{(success ? "" : " NOT")} added successfully. Press [enter] key to return to the main menu.");
+                var success = _repo.AddMenuItem(cafeMenuItem);
+                
+                if (success == true)
+                {
+                    Console.WriteLine("Your menu item was addedd successfully. Press [enter] key to return to the main menu.");
+                }
+                else
+                {
+                    Console.WriteLine("Your menu item was NOT addedd successfully. Press [enter] key to return to the main menu.");
+                }
+
                 Console.ReadLine();
                 CafeConsoleMenu();
             }
@@ -110,7 +119,16 @@ namespace _01_Cafe_App
             try
             {
                 var success = _repo.RemoveMenuItemByMealNumber(Convert.ToInt32(mealNumber));
-                Console.WriteLine($"The meal was{(success ? "" : " NOT")} successfully removed. Press [enter] key to return to the main menu");
+                
+                if (success == true)
+                {
+                    Console.WriteLine("The meal was successfully removed. Press [enter] key to return to the main menu.");
+                }
+                else
+                {
+                    Console.WriteLine("The meal was NOT successfully removed. Press [enter] key to return to the main menu.");
+                }
+
             }
             catch
             {
