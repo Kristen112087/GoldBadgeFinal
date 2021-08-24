@@ -47,7 +47,7 @@ namespace _01_Cafe_ClassLibrary
                 var existingItem = GetMenuItemByMealNumber(mealNumber);
                 if (existingItem == null)
                 {
-                    Console.WriteLine("There is no meal by the number.");
+                    Console.WriteLine("There is no meal by that number.");
                     return false;
                 }
 
