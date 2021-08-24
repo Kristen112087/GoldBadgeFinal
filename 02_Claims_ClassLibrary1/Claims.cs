@@ -29,10 +29,6 @@ namespace _02_Claims_ClassLibrary1
                 }
             } 
         }
-
-        
-
-
         public Claim() { }
         public Claim(int claimId, ClaimType typeOfClaim, string description, decimal claimAmount, DateTime dateOfIncident, DateTime dateOfClaim)
         {

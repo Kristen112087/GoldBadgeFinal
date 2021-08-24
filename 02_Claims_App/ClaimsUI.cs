@@ -1,6 +1,7 @@
 ﻿using _02_Claims_ClassLibrary1;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,16 +54,43 @@ namespace _02_Claims_App
 
         public void SeeAllClaims()
         {
-            Console.Clear();
-            foreach (Claim claim in _claimsRepo.SeeAllClaims())
+            DataTable GetData(DataTable claimsTable)
             {
-                Console.WriteLine($"Claim ID: {claim.ClaimID}\nClaim Type: {claim.ClaimType}\nDescription: {claim.Description}\nClaim Amount:{string.Format("{0:c}", claim.ClaimAmount)}\nDate Of Incident:{claim.DateOfIncident}\nDate Of Claim:{claim.DateOfClaim}\n\n");
+                claimsTable.Columns.Add("Claim ID", typeof(int));
+                claimsTable.Columns.Add("Claim Type", typeof(string));
+                claimsTable.Columns.Add("Description", typeof(string));
+                claimsTable.Columns.Add("Claim Amount", typeof(decimal));
+                claimsTable.Columns.Add("Date of Incident", typeof(DateTime));
+                claimsTable.Columns.Add("Date of Claim", typeof(DateTime));
+                claimsTable.Columns.Add("Is Valid", typeof(bool));
+
+                claimsTable.Rows.Add(1, "Car", "Car accident on 465", 400.00, "4/25/2018", "4/27/2018", true);
+                claimsTable.Rows.Add(2, "Home", "House fire in kitchen", 4000.00, "4/11/2018", "4/12/2018", true);
+                claimsTable.Rows.Add(3, "Theft", "Stolen Pancakes", 4.00, "4/27/2018", "6/01/2018", true);
+
+                return claimsTable;
+
             }
+            Console.Clear();
+            Console.WriteLine("\n\nPress any key to return to main menu");
+            Console.ReadLine();
+            ClaimsAgentMenu();
         }
 
         public void NextClaim()
         {
             Console.Clear();
+            // next item in Queue, listed out:
+            // Claim ID
+            // type
+            // Description
+            // Amount
+            // Date of incident
+            // date of claim
+            // is valid
+            // Do you want to deal with this claim now(y/n)? if yes, claim is pulled from top of queue
+            // If no, back to main menu
+            ClaimsAgentMenu();
             
         }
 
@@ -101,7 +129,20 @@ namespace _02_Claims_App
 
             try
             {
-                var claim = new Claim(Convert.ToInt32(claimId), ClaimType, description, Convert.ToDecimal(claimAmount), Convert.ToDateTime(dateOfIncident), Convert.ToDateTime(dateOfClaim));
+                ClaimType claimType = ClaimType.Car;
+                if (typeOfClaim.ToLower() == "car")
+                {
+                    claimType = ClaimType.Car;
+                }
+                else if (typeOfClaim.ToLower() == "home")
+                {
+                    claimType = ClaimType.Home;
+                }
+                else if (typeOfClaim.ToLower() == "theft")
+                {
+                    claimType = ClaimType.Theft;
+                }
+                var claim = new Claim(Convert.ToInt32(claimId), claimType, description, Convert.ToDecimal(claimAmount), Convert.ToDateTime(dateOfIncident), Convert.ToDateTime(dateOfClaim));
 
                 var success = _claimsRepo.CreateNewClaim(claim);
 
@@ -116,7 +157,7 @@ namespace _02_Claims_App
             }
             catch
             {
-                Console.WriteLine("Something was wrong with your inut. Please check that Claim ID is a unique number, and that the Claim Amount has no dollar signs. ");
+                Console.WriteLine("Something was wrong with your inut. Please check that Claim ID is a unique number, and that the Claim Amount has no dollar signs.");
             }
 
 
