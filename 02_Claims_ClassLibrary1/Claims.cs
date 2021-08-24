@@ -15,7 +15,7 @@ namespace _02_Claims_ClassLibrary1
         public decimal ClaimAmount { get; set; }
         public DateTime DateOfIncident { get; set; }
         public DateTime DateOfClaim { get; set; }
-        bool IsValid { 
+        public bool IsValid { 
             get {
                 var timeSinceIncident = DateOfClaim - DateOfIncident;
                 var daysSinceIncident = timeSinceIncident.Days;
@@ -33,6 +33,7 @@ namespace _02_Claims_ClassLibrary1
         public Claim(int claimId, ClaimType typeOfClaim, string description, decimal claimAmount, DateTime dateOfIncident, DateTime dateOfClaim)
         {
             ClaimID = claimId;
+            ClaimType = typeOfClaim;
             Description = description;
             ClaimAmount = claimAmount;
             DateOfIncident = dateOfIncident;

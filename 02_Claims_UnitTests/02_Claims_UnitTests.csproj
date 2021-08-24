@@ -60,6 +60,10 @@
       <Project>{0e6d6bc3-3706-4e31-9c3e-443cbe8d802e}</Project>
       <Name>01_Cafe_ClassLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\02_Claims_ClassLibrary1\02_Claims_ClassLibrary1.csproj">
+      <Project>{54B92304-2D73-414A-83D2-C4374CEA81F3}</Project>
+      <Name>02_Claims_ClassLibrary1</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

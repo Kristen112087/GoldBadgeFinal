@@ -45,7 +45,12 @@ namespace _02_Claims_ClassLibrary1
         }
 
 
-        public Claim WorkOnNextClaim()
+        public Claim SeeNextInQ()
+        {
+            return claimsQ.Peek();
+        }
+
+        public Claim WorkOnNextInQ()
         {
             return claimsQ.Dequeue();
         }

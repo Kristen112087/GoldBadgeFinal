@@ -65,7 +65,7 @@ namespace _02_Claims_App
             Console.WriteLine($"{"ClaimID".PadRight(10)}{"Type".PadRight(8)}{"Description".PadRight(30)}{"Amount".PadLeft(10)}{"Date Of Incident".PadLeft(20)}{"Date Of Claim".PadLeft(20)}{"Is Valid".PadLeft(12)}\n");
             foreach (var claim in allClaims)
             {
-                Console.WriteLine($"{claim.ClaimID.ToString().PadRight(10)}{claim.ClaimType.ToString().PadRight(8)}{claim.Description.PadRight(30)}{string.Format("{0:c}",claim.ClaimAmount).PadLeft(10)}{claim.DateOfIncident.ToString("MM/dd/yyyy").PadLeft(20)}{claim.DateOfClaim.ToString("MM/dd/yyyy").PadLeft(20)}");
+                Console.WriteLine($"{claim.ClaimID.ToString().PadRight(10)}{claim.ClaimType.ToString().PadRight(8)}{claim.Description.PadRight(30)}{string.Format("{0:c}",claim.ClaimAmount).PadLeft(10)}{claim.DateOfIncident.ToString("MM/dd/yyyy").PadLeft(20)}{claim.DateOfClaim.ToString("MM/dd/yyyy").PadLeft(20)}{claim.IsValid.ToString().PadLeft(12)}");
             }
 
 
@@ -78,23 +78,41 @@ namespace _02_Claims_App
         public void NextClaim()
         {
             Console.Clear();
-            var allClaims = _claimsRepo.WorkOnNextClaim();
-            Console.WriteLine("Here are the details for the next claim to be handled:\n");
-            Console.WriteLine($"{}");
-            
-            
-            // next item in Queue, listed out:
-            // Claim ID
-            // type
-            // Description
-            // Amount
-            // Date of incident
-            // date of claim
-            // is valid
-            // Do you want to deal with this claim now(y/n)? if yes, claim is pulled from top of queue
-            // If no, back to main menu
-            Console.ReadKey();
-            ClaimsAgentMenu();
+            var nextClaim = _claimsRepo.SeeNextInQ();
+            Console.WriteLine("Here are the details for the next claim to be handled:\n\n");
+            Console.WriteLine($"ClaimID: {nextClaim.ClaimID}");
+            Console.WriteLine($"Claim Type: {nextClaim.ClaimType}");
+            Console.WriteLine($"Claim Description: {nextClaim.Description}");
+            Console.WriteLine($"Claim Amount: {string.Format("{0:c}", nextClaim.ClaimAmount)}");
+            Console.WriteLine($"Date of Incident: {nextClaim.DateOfIncident.ToString("MM/dd/yyyy")}");
+            Console.WriteLine($"Date of Claim: {nextClaim.DateOfClaim.ToString("MM/dd/yyyy")}");
+            Console.WriteLine($"Is Valid: {nextClaim.IsValid}\n\n");
+            Console.WriteLine("Do you want to deal with this claim now (y/n)?");
+
+            var agentAnswer = Console.ReadLine();
+            //if (agentAnswer = "y")
+            //{
+            //    return _claimsRepo.WorkOnNextClaim();
+            //}
+            //else
+            //{
+            //    ClaimsAgentMenu();
+            //}
+            //// If no, back to main menu
+            //Console.ReadKey();
+            //ClaimsAgentMenu();
+
+            switch (agentAnswer)
+            {
+                case "y":
+                    _claimsRepo.WorkOnNextInQ();
+                    ClaimsAgentMenu();
+                    break;
+                case "n":
+                    Console.WriteLine("Press any key to go to main menu");
+                    ClaimsAgentMenu();
+                    break;
+            }
             
         }
 
