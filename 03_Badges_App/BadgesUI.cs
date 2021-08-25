@@ -48,43 +48,77 @@ namespace _03_Badges_App
         {
             Console.Clear();
             _BadgesRepo.CreateNewBadge(1234);
-            Console.WriteLine("What is the number on the Badge you would like to add?");
+            Console.WriteLine("What is the number of the Badge you would like to add?");
             var badgeNum = Console.ReadLine();
 
             Console.WriteLine("List a door it needs access to:");
-            var doorAccess = Console.ReadLine();
+            var doorAccess = Console.ReadLine().ToLower();
 
             Console.WriteLine("Does this badge need access to any other doors? (y/n)");
             var yesOrNoAddABadge = Console.ReadLine();
 
-            if (yesOrNoAddABadge)
+            bool addDoorToBadge = true;
+            while (addDoorToBadge)
             {
-
+                switch (doorAccess)
+                {
+                    case "y":
+                    case "yes":
+                        AddAnotherToBadge();
+                        break;
+                    case "n":
+                    case "no":
+                        MainMenu();
+                        break;
+                    default:
+                        Console.WriteLine("Please make a valid selection\nPress any key to continue...");
+                        break;
+                }
             }
-            AddDoorsToBadge();
-            // if/ else OR switch case?
-            // Y/yes = ask above question again
-            // N/No = back to main menu
-            
 
             Console.WriteLine("Press any key to return to Main Menu");
             Console.ReadLine();
             MainMenu();
         }
-
         public void AddAnotherDoorToBadge()
         {
-            
-            _BadgesRepo.AddDoorsToBadge(badgeNum, List<door>);
+
+            AddAnotherDoorToBadge();
         }
+
         public void EditABadge()
         {
             Console.Clear();
-            _BadgesRepo.GetBadgeByBadgeId(badgeNum);
+            Console.WriteLine("What is the badge number you'd like to update?");
+            var badgeNum = Console.ReadLine();
+            // GetBadgeById();\n
+            Console.WriteLine("What would you like to do?\n1. Remove a door\n2. Add a door.");
+            var whatToUpdate = Console.ReadLine();
+            switch (whatToUpdate)
+            {
+                case "1":
+                    RemoveDoorOnBadge();
+                    break;
+                case "2":
+                    AddAnotherDoorToBadge();
+                    break;
+                default:
+                    Console.WriteLine("Please make a valid selection. Press any key to continue");
+                    break;
+            }
             Console.WriteLine("Press any key to return to Main Menu");
             Console.ReadLine();
             MainMenu();
 
+        }
+
+        public void RemoveDoorOnBadge()
+        {
+            Console.Clear();
+            var badgeNum = _BadgesRepo.RemoveDoorFromBadge();
+            Console.WriteLine($"Are you sure you want to remove {removeDoor} from {badgeNum}?");
+            // if yes, remove
+            // if no, keep and go to main menu
         }
         public void GetAllBadges()
         {

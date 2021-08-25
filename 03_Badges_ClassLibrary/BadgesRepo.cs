@@ -49,23 +49,14 @@ namespace _03_Badges_ClassLibrary
         //    }
         //}
 
-        public bool GetBadgeByBadgeId(int badgeNum)
+        public BadgesRepo GetBadgeByBadgeId(int badgeNum)
         {
-            // return _employeeBadges.Where(b => b. == badgeNum).FirstOrDefault();
-            if (_employeeBadges.ContainsKey(badgeNum))
-            {
-                badgeNum = badgeNum;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return badgeNum.Where(b => b. == badgeNum).FirstOrDefault();
         }
 
         public bool UpdateDoorOnBadge(int badgeNum, List<string> doors)
         {
-            
+            return;
 
         }
 
