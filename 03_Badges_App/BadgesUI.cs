@@ -60,11 +60,11 @@ namespace _03_Badges_App
             bool addDoorToBadge = true;
             while (addDoorToBadge)
             {
-                switch (doorAccess)
+                switch (yesOrNoAddABadge)
                 {
                     case "y":
                     case "yes":
-                        AddAnotherToBadge();
+                        AddAnotherDoorToBadge(); // <-- not doing anything after...?
                         break;
                     case "n":
                     case "no":
@@ -72,18 +72,22 @@ namespace _03_Badges_App
                         break;
                     default:
                         Console.WriteLine("Please make a valid selection\nPress any key to continue...");
+                        Console.ReadKey();
                         break;
                 }
             }
-
             Console.WriteLine("Press any key to return to Main Menu");
             Console.ReadLine();
             MainMenu();
         }
+
         public void AddAnotherDoorToBadge()
         {
+            BadgesRepo badges = new BadgesRepo(); // <---here is where i need to list out the badge info from line 67 for securityAdmin to update......
+            badges.AddAnotherDoorToBadge(); // <--- not sure whats wrong? 
 
-            AddAnotherDoorToBadge();
+            // badges.GetBadgeByBadgeId(1234);
+            // badges.UpdateBadge();
         }
 
         public void EditABadge()
@@ -92,12 +96,13 @@ namespace _03_Badges_App
             Console.WriteLine("What is the badge number you'd like to update?");
             var badgeNum = Console.ReadLine();
             // GetBadgeById();\n
+            // show badge information
             Console.WriteLine("What would you like to do?\n1. Remove a door\n2. Add a door.");
             var whatToUpdate = Console.ReadLine();
             switch (whatToUpdate)
             {
                 case "1":
-                    RemoveDoorOnBadge();
+                    // RemoveDoorOnBadge();
                     break;
                 case "2":
                     AddAnotherDoorToBadge();
@@ -109,17 +114,15 @@ namespace _03_Badges_App
             Console.WriteLine("Press any key to return to Main Menu");
             Console.ReadLine();
             MainMenu();
-
         }
+        //public void RemoveDoorOnBadge()
+        //{
+        //    Console.Clear();
 
-        public void RemoveDoorOnBadge()
-        {
-            Console.Clear();
-            var badgeNum = _BadgesRepo.RemoveDoorFromBadge();
-            Console.WriteLine($"Are you sure you want to remove {removeDoor} from {badgeNum}?");
-            // if yes, remove
-            // if no, keep and go to main menu
-        }
+        //    Get
+
+        //    var badgeNum = _BadgesRepo.RemoveDoorFromBadge();
+        //}
         public void GetAllBadges()
         {
             Console.Clear();

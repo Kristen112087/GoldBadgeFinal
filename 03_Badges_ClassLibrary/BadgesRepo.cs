@@ -22,44 +22,21 @@ namespace _03_Badges_ClassLibrary
                 return false;
             }
         }
-
-        public bool AddDoorsToBadge(int badgeNum, List<string> doors)
+        public Dictionary<int, List<string>> GetAllBadges()
         {
-            try
-            {
-                _employeeBadges[badgeNum] = doors;
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return _employeeBadges;
         }
-
-        //public bool AddAnotherDoorToBadge(int badgeNum, List<string> doors)
+        //public BadgesRepo GetBadgeByBadgeId(int badgeNum)
         //{
-        //    try
-        //    {
-        //        _employeeBadges.Add(badgeNum, List<string> doors);
-        //        return true
-        //    }
-        //    catch
-        //    {
-        //        return false;
-        //    }
+        //    return badgeNum.Where(b => b. == badgeNum).FirstOrDefault();
         //}
 
-        public BadgesRepo GetBadgeByBadgeId(int badgeNum)
-        {
-            return badgeNum.Where(b => b. == badgeNum).FirstOrDefault();
-        }
-
-        public bool UpdateDoorOnBadge(int badgeNum, List<string> doors)
-        {
-            return;
-
-        }
-
+        //public bool UpdateBadge(int badgeNum, List<string> doors)
+        //{
+            
+        //    // return badgeNum where badgeNum == badgeNum .FirstOrDefault();
+        //    // we want to return the badge that matches the userInput, so the user can update it 
+        //}
         public bool RemoveDoorFromBadge(int badgeNum, List<string> doors)
         {
             try
@@ -72,11 +49,35 @@ namespace _03_Badges_ClassLibrary
                 return false;
             }
         }
+        // Do i need either of these below? or would these both be the same thing as UpdateBadge?
 
-        public Dictionary<int, List<string>> GetAllBadges()
+        //public bool AddDoorsToBadge(int badgeNum, List<string> doors)
+        //{
+        //    try
+        //    {
+        //        _employeeBadges[badgeNum] = doors;
+        //        return true;
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        public bool AddAnotherDoorToBadge(int badgeNum, List<string> doors)
         {
-            return _employeeBadges;
+            try
+            {
+                _employeeBadges.Add(badgeNum, List<string> doors);
+                return true
+            }
+            catch
+            {
+                return false;
+            }
         }
+
+
 
     }
 }
