@@ -46,5 +46,39 @@ namespace _02_Claims_UnitTests
 
             Assert.IsTrue(repo.AllClaims().Count == 2);
         }
+
+        [TestMethod]
+        public void TestThatSeeNextInQ_DoesNotTakeClaimOutOfQ()
+        {
+            Claim claim;
+
+            claim = new Claim();
+            claim.ClaimID = 1;
+            claim.ClaimType = ClaimType.Car;
+            claim.Description = "broken";
+            claim.ClaimAmount = 500.00m;
+            repo.CreateNewClaim(claim);
+
+            repo.SeeNextInQ();
+
+            Assert.AreEqual(1, repo.AllClaims().Count);
+        }
+
+        [TestMethod]
+        public void TestThatWorkOnNextInQ_TakesNextOutOfQ()
+        {
+            Claim claim;
+
+            claim = new Claim();
+            claim.ClaimID = 1;
+            claim.ClaimType = ClaimType.Car;
+            claim.Description = "broken";
+            claim.ClaimAmount = 500.00m;
+            repo.CreateNewClaim(claim);
+
+            repo.WorkOnNextInQ();
+
+            Assert.AreEqual(0, repo.AllClaims().Count);
+        }
     }
 }
