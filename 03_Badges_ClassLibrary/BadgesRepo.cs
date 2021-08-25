@@ -23,19 +23,6 @@ namespace _03_Badges_ClassLibrary
             }
         }
 
-        //public bool AddDoorToBadge(int badgeNum, string door)
-        //{
-        //    try
-        //    {
-        //        _employeeBadges[badgeNum].Add(door);
-        //        return true;
-        //    }
-        //    catch
-        //    {
-        //        return false;
-        //    }
-        //}
-
         public bool AddDoorsToBadge(int badgeNum, List<string> doors)
         {
             try
@@ -49,7 +36,40 @@ namespace _03_Badges_ClassLibrary
             }
         }
 
+        //public bool AddAnotherDoorToBadge(int badgeNum, List<string> doors)
+        //{
+        //    try
+        //    {
+        //        _employeeBadges.Add(badgeNum, List<string> doors);
+        //        return true
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        public bool GetBadgeByBadgeId(int badgeNum)
+        {
+            // return _employeeBadges.Where(b => b. == badgeNum).FirstOrDefault();
+            if (_employeeBadges.ContainsKey(badgeNum))
+            {
+                badgeNum = badgeNum;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public bool UpdateDoorOnBadge(int badgeNum, List<string> doors)
+        {
+            
+
+        }
+
+        public bool RemoveDoorFromBadge(int badgeNum, List<string> doors)
         {
             try
             {
@@ -60,30 +80,11 @@ namespace _03_Badges_ClassLibrary
             {
                 return false;
             }
-
         }
 
-        public bool RemoveDoorFromBadge(int badgeNum, List<string> doors)
+        public Dictionary<int, List<string>> GetAllBadges()
         {
-            try
-            {
-                foreach (List<string> door in doors)
-                {
-                    if (door.Contains door)
-                    {
-
-                    }
-                    else
-                    {
-
-                    }
-                }
-            }
-            catch
-            {
-                return false;
-            }
-
+            return _employeeBadges;
         }
 
     }
