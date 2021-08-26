@@ -62,8 +62,7 @@ namespace _03_Badges_ClassLibrary
                 return false;
             }
         }
-        // Do i need either of these below? or would these both be the same thing as UpdateBadge?
-
+       
         public bool AddDoorToBadge(int badgeNum, string door)
         {
             try
