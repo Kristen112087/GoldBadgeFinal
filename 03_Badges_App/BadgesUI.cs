@@ -47,65 +47,77 @@ namespace _03_Badges_App
         public void AddABadgeToDictionary()
         {
             Console.Clear();
-            _BadgesRepo.CreateNewBadge(1234);
             Console.WriteLine("What is the number of the Badge you would like to add?");
             var badgeNum = Console.ReadLine();
+            _BadgesRepo.CreateNewBadge(Convert.ToInt32(badgeNum));
 
-            Console.WriteLine("List a door it needs access to:");
-            var doorAccess = Console.ReadLine().ToLower();
 
-            Console.WriteLine("Does this badge need access to any other doors? (y/n)");
-            var yesOrNoAddABadge = Console.ReadLine();
 
             bool addDoorToBadge = true;
+            var currentDoors = _BadgesRepo.GetDoorsByBadgeId(Convert.ToInt32(badgeNum));
             while (addDoorToBadge)
             {
+                Console.WriteLine("List a door it needs access to:");
+                var doorAccess = Console.ReadLine().ToLower();
+                currentDoors.Add(doorAccess);
+                Console.WriteLine("Does this badge need access to any other doors? (y/n)");
+                var yesOrNoAddABadge = Console.ReadLine();
+                
                 switch (yesOrNoAddABadge)
                 {
                     case "y":
                     case "yes":
-                        AddAnotherDoorToBadge(); // <-- not doing anything after...?
-                        break;
+                        continue;
                     case "n":
                     case "no":
-                        MainMenu();
+                        addDoorToBadge = false;
                         break;
                     default:
-                        Console.WriteLine("Please make a valid selection\nPress any key to continue...");
-                        Console.ReadKey();
-                        break;
+                        continue;
                 }
             }
-            Console.WriteLine("Press any key to return to Main Menu");
-            Console.ReadLine();
+            _BadgesRepo.UpdateBadge(Convert.ToInt32(badgeNum), currentDoors);
+            Console.WriteLine("\nPress any key to return to Main Menu");
+            Console.ReadKey();
             MainMenu();
         }
-
-        public void AddAnotherDoorToBadge()
-        {
-            BadgesRepo badges = new BadgesRepo(); // <---here is where i need to list out the badge info from line 67 for securityAdmin to update......
-            badges.AddAnotherDoorToBadge(); // <--- not sure whats wrong? 
-
-            // badges.GetBadgeByBadgeId(1234);
-            // badges.UpdateBadge();
-        }
-
         public void EditABadge()
         {
             Console.Clear();
             Console.WriteLine("What is the badge number you'd like to update?");
             var badgeNum = Console.ReadLine();
-            // GetBadgeById();\n
-            // show badge information
+            Console.WriteLine($"{badgeNum} has access to doors {string.Join(" & ",_BadgesRepo.GetDoorsByBadgeId(Convert.ToInt32(badgeNum)))}");
             Console.WriteLine("What would you like to do?\n1. Remove a door\n2. Add a door.");
             var whatToUpdate = Console.ReadLine();
             switch (whatToUpdate)
             {
                 case "1":
-                    // RemoveDoorOnBadge();
+                    Console.WriteLine("What door would you like to remove?");
+                    var door = Console.ReadLine();
+                    var successfulRemove = _BadgesRepo.RemoveDoorFromBadge(Convert.ToInt32(badgeNum), door);
+                    if (successfulRemove)
+                    {
+                        Console.WriteLine("Door removed!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Door was not removed. Please make sure you typed door name correctly.");
+                    }
+                    Console.WriteLine($"{badgeNum} has access to doors {string.Join(" & ", _BadgesRepo.GetDoorsByBadgeId(Convert.ToInt32(badgeNum)))}");
                     break;
                 case "2":
-                    AddAnotherDoorToBadge();
+                    Console.WriteLine("What door would you like to add?");
+                    var door1 = Console.ReadLine();
+                    var successfulAdd = _BadgesRepo.AddDoorToBadge(Convert.ToInt32(badgeNum), door1);
+                    if (successfulAdd)
+                    {
+                        Console.WriteLine("Door added!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Door was not added. Please make sure you typed door name correctly.");
+                    }
+                    Console.WriteLine($"{badgeNum} has access to doors {string.Join(" & ", _BadgesRepo.GetDoorsByBadgeId(Convert.ToInt32(badgeNum)))}");
                     break;
                 default:
                     Console.WriteLine("Please make a valid selection. Press any key to continue");
@@ -115,20 +127,20 @@ namespace _03_Badges_App
             Console.ReadLine();
             MainMenu();
         }
-        //public void RemoveDoorOnBadge()
-        //{
-        //    Console.Clear();
 
-        //    Get
-
-        //    var badgeNum = _BadgesRepo.RemoveDoorFromBadge();
-        //}
         public void GetAllBadges()
         {
             Console.Clear();
-            var allBadges = _BadgesRepo.GetAllBadges();
+            var allBadgeAndDoorList = _BadgesRepo.GetAllBadges();
+
+            Console.Write("Badge #".PadRight(20));
+            Console.WriteLine("Door Access");
+            foreach (var badgeAndDoors in allBadgeAndDoorList)
+            {
+                Console.WriteLine($"{badgeAndDoors.Key.ToString().PadRight(20)}{string.Join(", ", badgeAndDoors.Value)}");
+            }
             Console.WriteLine("Press any key to return to Main Menu");
-            Console.ReadLine();
+            Console.ReadKey();
             MainMenu();
 
         }
