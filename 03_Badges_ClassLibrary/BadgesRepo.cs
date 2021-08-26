@@ -38,6 +38,18 @@ namespace _03_Badges_ClassLibrary
                 return new List<string>(); // if badge number doesnt exist, will return empty list of 'doors'
             }
         }
+        public bool AddDoorToBadge(int badgeNum, string door)
+        {
+            try
+            {
+                _employeeBadges[badgeNum].Add(door);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public bool UpdateBadge(int badgeNum, List<string> doors)
         {
             try
@@ -63,17 +75,5 @@ namespace _03_Badges_ClassLibrary
             }
         }
        
-        public bool AddDoorToBadge(int badgeNum, string door)
-        {
-            try
-            {
-                _employeeBadges[badgeNum].Add(door);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
     }
 }

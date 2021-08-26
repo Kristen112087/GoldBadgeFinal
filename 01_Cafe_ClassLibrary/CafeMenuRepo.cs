@@ -14,12 +14,6 @@ namespace _01_Cafe_ClassLibrary
         {
             return _menuItems;
         }
-
-        public CafeMenuItem GetMenuItemByMealNumber(int mealNumber)
-        {
-            return _menuItems.FindLast(m => m.MealNumber == mealNumber);
-        }
-
         public bool AddMenuItem(CafeMenuItem menuItem)
         {
             try
@@ -39,7 +33,10 @@ namespace _01_Cafe_ClassLibrary
                 return false;
             }            
         }
-
+        public CafeMenuItem GetMenuItemByMealNumber(int mealNumber)
+        {
+            return _menuItems.FindLast(m => m.MealNumber == mealNumber);
+        }
         public bool RemoveMenuItemByMealNumber(int mealNumber)
         {
             try
