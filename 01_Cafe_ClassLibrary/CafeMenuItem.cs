@@ -13,8 +13,6 @@ namespace _01_Cafe_ClassLibrary
         public string MealDescription { get; set; }
         public string Ingredients { get; set; }
         public decimal Price { get; set; }
-
-
         public CafeMenuItem() { }
         public CafeMenuItem(int mealNumber, string mealName, string mealDescription, string ingredients, decimal price)
         {

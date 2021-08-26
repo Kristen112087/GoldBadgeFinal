@@ -12,7 +12,6 @@ namespace _03_Badges_App
         {
             BadgesUI ui = new BadgesUI();
             ui.Run();
-
             // Dictionary<int, List<string>> _employeeBadges = new Dictionary<int, List<string>>();
         }
     }

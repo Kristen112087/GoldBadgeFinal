@@ -33,27 +33,21 @@ namespace _02_Claims_ClassLibrary1
                 return false;
             }
         }
-
         public Queue<Claim> AllClaims()
         {
             return claimsQ;
         }
- 
         public Claim GetClaimByClaimId(int claimId)
         {
             return claimsQ.Where(c => c.ClaimID == claimId).FirstOrDefault();
         }
-
-
         public Claim SeeNextInQ()
         {
             return claimsQ.Peek();
         }
-
         public Claim WorkOnNextInQ()
         {
             return claimsQ.Dequeue();
         }
-
     }
 }

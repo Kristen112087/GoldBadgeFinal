@@ -9,7 +9,6 @@ namespace _03_Badges_Tests
     public class BadgeRepoTests
     {
         BadgesRepo repo = new BadgesRepo();
-
         [TestMethod]
         public void TestThatCreateNewBadge_AddsBadgeToDictionary()
         {
@@ -18,19 +17,16 @@ namespace _03_Badges_Tests
 
             Assert.IsTrue(allBadges.Count == 1);
         }
-
         [TestMethod]
         public void TestThatAddingADoorToBadge_AddsDoorToCorrectBadgeId()
         {
             repo.CreateNewBadge(123);
             repo.AddDoorToBadge(123, "d1");
-
             var doors = repo.GetDoorsByBadgeId(123);
 
             Assert.AreEqual(1, doors.Count);
             Assert.IsTrue(doors.Contains("d1"));
         }
-
         [TestMethod]
         public void TestThatUpdatBadge_UpdatesBadge()
         {
@@ -42,9 +38,7 @@ namespace _03_Badges_Tests
             var updatedDoors = repo.GetDoorsByBadgeId(123);
 
             Assert.AreEqual(doors, updatedDoors);
-            
         }
-
         [TestMethod]
         public void TestThatRemoveDoorFromBadge_RmovesDoorFromBadge()
         {
@@ -59,7 +53,6 @@ namespace _03_Badges_Tests
             Assert.IsTrue(updatedDoors.Contains("f1"));
             Assert.IsFalse(updatedDoors.Contains("d1"));
         }
-
         [TestMethod]
         public void TestThatAddDoorToBadge_AddsDoorToCorrectBadge()
         {

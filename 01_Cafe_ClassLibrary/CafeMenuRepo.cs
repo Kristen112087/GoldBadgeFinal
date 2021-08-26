@@ -9,7 +9,6 @@ namespace _01_Cafe_ClassLibrary
     public class CafeMenuRepo
     {
         public List<CafeMenuItem> _menuItems = new List<CafeMenuItem>();
-
         public List<CafeMenuItem> GetAllMenuItems()
         {
             return _menuItems;
@@ -24,7 +23,6 @@ namespace _01_Cafe_ClassLibrary
                     Console.WriteLine("This meal number already exists.");
                     return false;
                 }
-
                 _menuItems.Add(menuItem);
                 return true;
             }
@@ -47,7 +45,6 @@ namespace _01_Cafe_ClassLibrary
                     Console.WriteLine("There is no meal by that number.");
                     return false;
                 }
-
                 _menuItems.RemoveAll(m => m.MealNumber == mealNumber);
                 return true;
             }
@@ -56,6 +53,5 @@ namespace _01_Cafe_ClassLibrary
                 return false;
             }            
         }
-
     }
 }

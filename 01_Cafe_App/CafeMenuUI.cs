@@ -10,7 +10,6 @@ namespace _01_Cafe_App
     public class CafeMenuUI
     {
         CafeMenuRepo _repo = new CafeMenuRepo();
-
         public void Run()
         {
             CafeConsoleMenu();
@@ -42,11 +41,9 @@ namespace _01_Cafe_App
                     break;
             }
         }
-
         public void CreateNewItem()
         {
             Console.Clear();
-
             CafeMenuItem items = new CafeMenuItem();
 
             //Meal Number mealNumber
@@ -72,7 +69,6 @@ namespace _01_Cafe_App
             try
             {
                 var cafeMenuItem = new CafeMenuItem(Convert.ToInt32(mealNumber), mealName, mealDescription, ingredients, Convert.ToDecimal(price));
-
                 var success = _repo.AddMenuItem(cafeMenuItem);
                 
                 if (success == true)
@@ -83,7 +79,6 @@ namespace _01_Cafe_App
                 {
                     Console.WriteLine("Your menu item was NOT addedd successfully. Press [enter] key to return to the main menu.");
                 }
-
                 Console.ReadLine();
                 CafeConsoleMenu();
             }
@@ -93,8 +88,6 @@ namespace _01_Cafe_App
                 Console.ReadLine();
                 CreateNewItem();
             }
-            
-
         }
         public void AllMenuItems()
         {
@@ -103,12 +96,10 @@ namespace _01_Cafe_App
             {
                 Console.WriteLine($"Meal {item.MealNumber}: {item.MealName}\nPrice: {string.Format("{0:c}", item.Price)}\nIngredients: {item.Ingredients}.\nDescription: {item.MealDescription}\n\n");
             }
-
             Console.WriteLine("Menu listing complete. Press any [enter] to return to the main menu.");
             Console.ReadLine();
             CafeConsoleMenu();
         }
-
         public void RemoveMealFromMenu()
         {
             Console.Clear();
@@ -128,13 +119,11 @@ namespace _01_Cafe_App
                 {
                     Console.WriteLine("The meal was NOT successfully removed. Press [enter] key to return to the main menu.");
                 }
-
             }
             catch
             {
                 Console.WriteLine("The meal was NOT successfully removed. Press [enter] key to return to the main menu");
             }
-
             Console.ReadLine();
             CafeConsoleMenu();
         }

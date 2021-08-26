@@ -10,12 +10,10 @@ namespace _03_Badges_App
     public class BadgesUI
     {
         BadgesRepo _BadgesRepo = new BadgesRepo();
-
         public void Run()
         {
             MainMenu();
         }
-
         public void MainMenu()
         {
             Console.Clear();
@@ -23,7 +21,6 @@ namespace _03_Badges_App
             var securityAdminInput = Console.ReadLine();
             ProcessMenuChoice(securityAdminInput);
         }
-
         public void ProcessMenuChoice(string securityAdminInput)
         {
             switch (securityAdminInput)
@@ -43,16 +40,12 @@ namespace _03_Badges_App
                     break;
             }
         }
-
         public void AddABadgeToDictionary()
         {
             Console.Clear();
             Console.WriteLine("What is the number of the Badge you would like to add?");
             var badgeNum = Console.ReadLine();
             _BadgesRepo.CreateNewBadge(Convert.ToInt32(badgeNum));
-
-
-
             bool addDoorToBadge = true;
             var currentDoors = _BadgesRepo.GetDoorsByBadgeId(Convert.ToInt32(badgeNum));
             while (addDoorToBadge)
@@ -127,7 +120,6 @@ namespace _03_Badges_App
             Console.ReadLine();
             MainMenu();
         }
-
         public void GetAllBadges()
         {
             Console.Clear();
@@ -142,8 +134,6 @@ namespace _03_Badges_App
             Console.WriteLine("Press any key to return to Main Menu");
             Console.ReadKey();
             MainMenu();
-
         }
-
     }
 }

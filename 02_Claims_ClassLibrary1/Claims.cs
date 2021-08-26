@@ -39,18 +39,5 @@ namespace _02_Claims_ClassLibrary1
             DateOfIncident = dateOfIncident;
             DateOfClaim = dateOfClaim;
         }
-
-        //public bool Valid
-        //{
-        //    if dateofclaim <= dateofincident+30
-        //    {
-        //    return true;
-        //    }
-        //    else
-        //    {
-        //    return false;
-        //    }
-        //}
-
     }
 }

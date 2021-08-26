@@ -17,26 +17,20 @@ namespace _01_Cafe_UnitTests
             menuItem.MealName = "Test Meal";
             menuItem.Ingredients = "Doesn't Matter";
             menuItem.MealDescription = "Doesn't Matter";
-
             repo.AddMenuItem(menuItem);
-
             var meal = repo.GetMenuItemByMealNumber(123);
 
             Assert.IsNotNull(meal);
         }
-
         [TestMethod]
         public void TestThatWhenMenuItemRemoved_ThenItemCannotBeFound()
         {
             TestThatWhenMenuItemAdded_ThenItemAddedSuccessfully();
-
             repo.RemoveMenuItemByMealNumber(123);
-
             var meal = repo.GetMenuItemByMealNumber(123);
 
             Assert.IsNull(meal);
         }
-
         [TestMethod]
         public void TestThatWhenTwoMenuItemsAdded_ThenItemCountIsTwo()
         {

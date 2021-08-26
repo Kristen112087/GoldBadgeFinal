@@ -9,8 +9,6 @@ namespace _03_Badges_ClassLibrary
     public class BadgesRepo
     {
         Dictionary<int, List<string>> _employeeBadges = new Dictionary<int, List<string>>();
-
-
         public bool CreateNewBadge(int badgeNum)
         {
             try
@@ -74,6 +72,5 @@ namespace _03_Badges_ClassLibrary
                 return false;
             }
         }
-       
     }
 }

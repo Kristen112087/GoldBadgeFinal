@@ -16,18 +16,15 @@ namespace _02_Claims_App
             SeedClaim();
             ClaimsAgentMenu();
         }
-
         public void SeedClaim()
         {
             Console.WriteLine("Seeding Claims...");
-
             Claim claim1 = new Claim(1, ClaimType.Car, "Car accident on 464", 400.00m, new DateTime(2018,2,25), new DateTime(2018, 2, 26));
             Claim claim2 = new Claim(2, ClaimType.Home, "House fire in kitchen", 40000.00m, new DateTime(2018, 2, 25), new DateTime(2018, 2, 26));
             Claim claim3 = new Claim(3, ClaimType.Theft, "Stolen pancakes", 4.00m, new DateTime(2018, 2, 25), new DateTime(2018, 2, 26));
             _claimsRepo.CreateNewClaim(claim1);
             _claimsRepo.CreateNewClaim(claim2);
             _claimsRepo.CreateNewClaim(claim3);
-
         }
         public void ClaimsAgentMenu()
         {
@@ -55,10 +52,8 @@ namespace _02_Claims_App
                     break;
             }
          }
-
         public void SeeAllClaims()
         {
-            
             Console.Clear();
             var allClaims = _claimsRepo.AllClaims();
 
@@ -67,14 +62,10 @@ namespace _02_Claims_App
             {
                 Console.WriteLine($"{claim.ClaimID.ToString().PadRight(10)}{claim.ClaimType.ToString().PadRight(8)}{claim.Description.PadRight(30)}{string.Format("{0:c}",claim.ClaimAmount).PadLeft(10)}{claim.DateOfIncident.ToString("MM/dd/yyyy").PadLeft(20)}{claim.DateOfClaim.ToString("MM/dd/yyyy").PadLeft(20)}{claim.IsValid.ToString().PadLeft(12)}");
             }
-
-
-
             Console.WriteLine("\n\nPress any key to return to main menu");
             Console.ReadLine();
             ClaimsAgentMenu();
         }
-
         public void NextClaim()
         {
             Console.Clear();
@@ -90,18 +81,6 @@ namespace _02_Claims_App
             Console.WriteLine("Do you want to deal with this claim now (y/n)?");
 
             var agentAnswer = Console.ReadLine();
-            //if (agentAnswer = "y")
-            //{
-            //    return _claimsRepo.WorkOnNextClaim();
-            //}
-            //else
-            //{
-            //    ClaimsAgentMenu();
-            //}
-            //// If no, back to main menu
-            //Console.ReadKey();
-            //ClaimsAgentMenu();
-
             switch (agentAnswer)
             {
                 case "y":
@@ -113,9 +92,7 @@ namespace _02_Claims_App
                     ClaimsAgentMenu();
                     break;
             }
-            
         }
-
         public void AddClaimToQueue()
         {
             Console.Clear();
@@ -140,7 +117,6 @@ namespace _02_Claims_App
             Console.WriteLine("Date of Claim:");
             var dateOfClaim = Console.ReadLine();
 
-            
             try
             {
                 ClaimType claimType = ClaimType.Car;
@@ -157,9 +133,7 @@ namespace _02_Claims_App
                     claimType = ClaimType.Theft;
                 }
                 var claim = new Claim(Convert.ToInt32(claimId), claimType, description, Convert.ToDecimal(claimAmount), Convert.ToDateTime(dateOfIncident), Convert.ToDateTime(dateOfClaim));
-
                 var success = _claimsRepo.CreateNewClaim(claim);
-
                 if (success == true)
                 {
                     Console.WriteLine("Claim has been added successfully. Press any key to return to main menu.");
@@ -173,13 +147,8 @@ namespace _02_Claims_App
             {
                 Console.WriteLine("Something was wrong with your inut. Please check that Claim ID is a unique number, and that the Claim Amount has no dollar signs.");
             }
-
-            
             Console.ReadKey();
             ClaimsAgentMenu();
-
-
-
         }
     }
 }
